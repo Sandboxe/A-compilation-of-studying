@@ -10,16 +10,12 @@ jobs:
       - name: Compile all LaTeX files
         uses: xu-cheng/latex-action@v3
         with:
-          # This pattern finds all .tex files but skips main.tex
+          # We tell it which file to run by looking for them first
           root_file: |
-            *.tex
-            !main.tex
-          glob_root_file: true
+            $(find . -name "*.tex" ! -name "main.tex")
 
       - name: Upload all PDFs
         uses: actions/upload-artifact@v4
         with:
           name: All-Compiled-PDFs
-          # This collects every .pdf file created in the build
-          path: "*.pdf"
-
+          path: "**/*.pdf"
