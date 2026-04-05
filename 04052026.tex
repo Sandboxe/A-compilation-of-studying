@@ -1,0 +1,126 @@
+\documentclass[11pt, leqno]{article}
+
+% --- Essential Math Packages ---
+\usepackage{amsmath, amssymb, amsthm} 
+\usepackage{mathtools, mathrsfs, bm}               
+\usepackage[letterpaper, margin=1in]{geometry}   
+
+% --- Theorem Environments (AoPS Style) ---
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{solution}{Solution} 
+
+% --- Essential Custom Macros ---
+\newcommand{\N}{\mathbb{N}}          
+\newcommand{\Z}{\mathbb{Z}}          
+\newcommand{\Q}{\mathbb{Q}}          
+\newcommand{\R}{\mathbb{R}}          
+\newcommand{\C}{\mathbb{C}}          
+\newcommand{\eps}{\varepsilon}       
+\newcommand{\ol}[1]{\overline{#1}}    % Fixed: Added [1]
+\newcommand{\ul}[1]{\underline{#1}}   % Fixed: Added [1]
+
+% --- Geometry Macros ---
+\newcommand{\ang}[1]{\angle #1}       % Fixed: Added [1]
+\newcommand{\triangleeq}{\triangle}   
+
+% --- Improved Operators ---
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\cis}{cis}
+
+% --- Paragraph Style ---
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+\section*{Problems for 04/05/2026}
+
+\begin{problem}
+Solve in natural numbers: $2^{k} + 7 = x^2$
+\end{problem}
+
+\begin{solution}
+Consider $2^{k} + 7 = x^2$ for $k = 0$
+
+We have $2^{0} + 7 = x^{2}$, this has no solutions as $8$ is not a perfect square. 
+
+Consider Consider $2^{k} + 7 = x^2$ for $k = 1$. This works for $x = 3$
+
+For $k \ge 2$ we have $2^{2 + n} + 7 = x^{2}$ for $n \ge 0$. Taking both sides $\pmod{4}$ we get $x^{2} \equiv 3\pmod{4}$. This is impossible as the quadratic residues $\pmod{4}$ are zero and one. Hence the only solution is $(x, k) = (3, 1)$
+
+\end{solution}
+
+
+\begin{problem}
+Find the least value of the expression $(x+y)(y+z)$, under the conditionthat $x,y,z$ are positive numbers satisfying the equation $xyz(x + y + z) = 1$.
+\end{problem}
+
+\begin{solution}
+$(x + y)(y + z) = xy + xz + y^{2} + yz = y(x + y + z) + xz$
+
+From the expression in the question we get $(x + y + z) = \displaystyle{\frac{1}{xyz}} \implies y(x + y + z) + xz = \frac{1}{xz} + xz$. We can find the minimum value of this expression easily, By $AM-GM$, it is clear that $\displaystyle{\frac{1}{xz}} + xz \ge 2$, for the equality take $x = z = 1$ and $y = \sqrt{2} - 1$. Which obviously satisfies the inequality.
+
+\end{solution}
+
+
+
+\begin{problem}
+Credit to jonny for inspiring this post!
+
+Find the total number of derangements of all the letters in the words:
+1. ERLINGHAALAND
+2. RONALDO
+3. LIONELMESSI
+4. MBAPPE
+5. ELLPISE
+\end{problem}
+
+\begin{solution}
+
+
+Recall that
+\[
+D_n = n!\sum_{r=0}^{n}\frac{(-1)^r}{r!}.
+\]
+
+Let \(A_k\) be the set of permutations with \(k\) fixed points. Then
+\[
+D_n = n! - \bigcup_{k=1}^n A_k.
+\]
+
+By inclusion--exclusion,
+\[
+D_n
+= n! - \sum_{k=1}^n (-1)^{k+1} \binom{n}{k}(n-k)!
+= n! - \sum_{k=1}^n (-1)^{k+1} \frac{n!}{k!}.
+\]
+
+Hence
+\[
+D_n
+= n!\left(1 - \sum_{k=1}^n \frac{(-1)^{k+1}}{k!}\right)
+= n!\sum_{k=0}^n \frac{(-1)^k}{k!}.
+\]
+
+This however doesn't simplify the complex, includion and exclusion that we tend to get in these kind of problems. But I'll have a look on the forums and see if anyone gives more clarification about rook polynomials later on because everything is quite confusing
+
+
+
+
+
+
+
+
+\end{solution}
+
+\end{document}
