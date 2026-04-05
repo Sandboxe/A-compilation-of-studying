@@ -1,5 +1,10 @@
-name: Build All LaTeX
+name: Build and Save PDFs
 on: [push]
+
+# This part is NEW: it gives the bot permission to save the PDFs to your repo
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,8 +17,11 @@ jobs:
         with:
           root_file: "*.tex"
 
-      - name: Upload all PDFs
-        uses: actions/upload-artifact@v4
-        with:
-          name: All-Compiled-PDFs
-          path: "*.pdf"
+      # This part is NEW: it saves the PDFs into your actual folder
+      - name: Save PDFs back to repository
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+          git add *.pdf
+          git commit -m "Update rendered PDFs" || echo "No changes to commit"
+          git push
